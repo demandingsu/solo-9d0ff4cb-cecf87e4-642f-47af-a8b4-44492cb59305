@@ -1,0 +1,15 @@
+services:
+  energy-api:
+    build: .
+    image: park-energy-api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      # SQLite 数据库文件位置（挂卷持久化，容器重建不丢数据）
+      ENERGY_DB_PATH: /data/energy.db
+    volumes:
+      - energy-data:/data
+    restart: unless-stopped
+
+volumes:
+  energy-data:
