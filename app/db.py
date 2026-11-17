@@ -33,6 +33,16 @@ CREATE TABLE IF NOT EXISTS batches (
     row_count  INTEGER NOT NULL,
     created_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS wrap_confirmations (
+    meter_id   TEXT NOT NULL,
+    hour_start TEXT NOT NULL,        -- 该小时起始整点 'YYYY-MM-DDTHH:00:00Z'
+    modulus    REAL NOT NULL,        -- 计数周期 M
+    start_kwh  REAL NOT NULL,        -- 登记时的起始读数快照（审计用）
+    end_kwh    REAL NOT NULL,        -- 登记时的终止读数快照（审计用）
+    created_at TEXT NOT NULL,
+    PRIMARY KEY (meter_id, hour_start)
+);
 """
 
 
